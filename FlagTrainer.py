@@ -78,7 +78,7 @@ def combine_images(generated_images):
     return image
 
 
-def train(BATCH_SIZE, DATASET_SIZE, generator, discriminator):
+def train(BATCH_SIZE, DATASET_SIZE, pickup, generator, discriminator):
     outputnoise = np.random.uniform(-1, 1, size=(BATCH_SIZE, 100))
     X_train = np.load("images-3l3.npy")
     if (DATASET_SIZE>0):
@@ -173,6 +173,6 @@ def get_args():
 if __name__ == "__main__":
     args = get_args()
     if args.mode == "train":
-        train(BATCH_SIZE=args.batch_size, DATASET_SIZE=args.dataset_size, generator=args.gen, discriminator=args.dis)
+        train(BATCH_SIZE=args.batch_size, DATASET_SIZE=args.dataset_size, pickup=args.pickup, generator=args.gen, discriminator=args.dis)
     elif args.mode == "generate":
         generate(BATCH_SIZE=args.batch_size, nice=args.nice, generator=args.gen, discriminator=args.dis, output=args.output)
